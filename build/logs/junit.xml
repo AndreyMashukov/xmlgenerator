@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="XML Generator" tests="3" assertions="49" failures="0" errors="0" time="0.202727">
+    <testsuite name="Tests\XMLGeneratorTest" file="/home/git/xmlgenerator/tests/XMLGeneratorTest.php" tests="3" assertions="49" failures="0" errors="0" time="0.202727">
+      <testcase name="testShouldProduceXmlDocument" class="Tests\XMLGeneratorTest" file="/home/git/xmlgenerator/tests/XMLGeneratorTest.php" line="18" assertions="14" time="0.057572"/>
+      <testcase name="testShouldProduceXmlDocumentWithAttributes" class="Tests\XMLGeneratorTest" file="/home/git/xmlgenerator/tests/XMLGeneratorTest.php" line="56" assertions="21" time="0.104355"/>
+      <testcase name="testShouldGenerateXmlsFromArray" class="Tests\XMLGeneratorTest" file="/home/git/xmlgenerator/tests/XMLGeneratorTest.php" line="95" assertions="14" time="0.040800"/>
+    </testsuite>
+  </testsuite>
+</testsuites>
