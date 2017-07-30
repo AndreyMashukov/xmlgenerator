@@ -121,6 +121,27 @@ class XMLGeneratorTest extends TestCase
 	    } //end testShouldGenerateXmlsFromArray()
 
 
+	/**
+	 * Should add subelements
+	 *
+	 * @return void
+	 */
+
+	public function testShouldAddSubelements()
+	    {
+		$xml     = new XMLGenerator("Root");
+		$element = $xml->newElement("Element", "text");
+		$xml->newElement("SubElement", "subtext", [], $element);
+
+		$doc   = $xml->getDoc();
+		$xpath = new DOMXPath($doc);
+
+		$list  = $xpath->query("//Root/Element/SubElement");
+		$this->assertEquals(1, $list->length);
+		$this->assertEquals("subtext", $list[0]->textContent);
+	    } //end testShouldAddSubelements()
+
+
     } //end class
 
 ?>

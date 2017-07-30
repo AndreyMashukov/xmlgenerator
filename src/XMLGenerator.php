@@ -2,7 +2,8 @@
 
 namespace AdService;
 
-use DomDocument;
+use \DomDocument;
+use \DomElement;
 
 class XMLGenerator
     {
@@ -32,18 +33,25 @@ class XMLGenerator
 	/**
 	 * Add new element
 	 *
-	 * @param string $name       Name of element
-	 * @param mixed  $value      value
-	 * @param array  $attributes Attributes
+	 * @param string     $name       Name of element
+	 * @param mixed      $value      value
+	 * @param array      $attributes Attributes
+	 * @param DomElement $element    Element to add subelement
 	 *
 	 * @return void
 	 */
 
-	public function newElement(string $name, $value, array $attributes = [])
+	public function newElement(string $name, $value, array $attributes = [], DomElement $domelement = null):DomElement
 	    {
 		if(is_integer($value) === true && $value > 0 || is_bool($value) === false && (string) $value !== "")
 		    {
-			$element = $this->_root->appendChild($this->_doc->createElement($name));
+			$main = $this->_root;
+			if ($domelement !== null)
+			    {
+				$main = $domelement;
+			    } //end if
+
+			$element = $main->appendChild($this->_doc->createElement($name));
 			$element->appendChild($this->_doc->createTextNode($value));
 			if (count($attributes) > 0)
 			    {
@@ -58,6 +66,7 @@ class XMLGenerator
 
 		    } //end if
 
+		return $element;
 	    } //end newElement()
 
 
