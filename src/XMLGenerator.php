@@ -37,11 +37,12 @@ class XMLGenerator
 	 * @param mixed      $value      value
 	 * @param array      $attributes Attributes
 	 * @param DomElement $element    Element to add subelement
+	 * @param bool       $empty      True if need empty element
 	 *
 	 * @return void
 	 */
 
-	public function newElement(string $name, $value, array $attributes = [], DomElement $domelement = null):DomElement
+	public function newElement(string $name, $value, array $attributes = [], DomElement $domelement = null, bool $empty = false):DomElement
 	    {
 		if(is_integer($value) === true && $value > 0 || is_bool($value) === false && (string) $value !== "")
 		    {
@@ -53,6 +54,27 @@ class XMLGenerator
 
 			$element = $main->appendChild($this->_doc->createElement($name));
 			$element->appendChild($this->_doc->createTextNode($value));
+			if (count($attributes) > 0)
+			    {
+				foreach ($attributes as $atrname => $atrvalue)
+				    {
+					$attribute        = $this->_doc->createAttribute($atrname);
+					$attribute->value = $atrvalue;
+					$element->appendChild($attribute);
+				    } //end foreach
+
+			    } //end if
+
+		    }
+		else if ($empty === true)
+		    {
+			$main = $this->_root;
+			if ($domelement !== null)
+			    {
+				$main = $domelement;
+			    } //end if
+
+			$element = $main->appendChild($this->_doc->createElement($name));
 			if (count($attributes) > 0)
 			    {
 				foreach ($attributes as $atrname => $atrvalue)

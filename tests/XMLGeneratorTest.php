@@ -142,6 +142,26 @@ class XMLGeneratorTest extends TestCase
 	    } //end testShouldAddSubelements()
 
 
+	/**
+	 * Should add empty elements
+	 *
+	 * @return void
+	 */
+
+	public function testShouldAddEmptyElements()
+	    {
+		$xml = new XMLGenerator("Root");
+		$xml->newElement("Element", "", [], null, true);
+
+		$doc   = $xml->getDoc();
+		$xpath = new DOMXPath($doc);
+
+		$list  = $xpath->query("//Root/Element");
+		$this->assertEquals(1, $list->length);
+		$this->assertEquals("", $list[0]->textContent);
+	    } //end testShouldAddEmptylements()
+
+
     } //end class
 
 ?>
