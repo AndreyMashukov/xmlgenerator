@@ -104,9 +104,12 @@ class XMLGeneratorTest extends TestCase
 			     "Type"      => "room",
 			     "Operation" => "rent",
 			     "Url"       => "http://anylink.ru/example",
+			     "notadded"  => "",
 			    );
 
 		$xml->loadArray($elements);
+
+		unset($elements["notadded"]);
 
 		$doc   = $xml->getDoc();
 		$xpath = new DOMXPath($doc);

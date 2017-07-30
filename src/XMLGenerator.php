@@ -86,6 +86,10 @@ class XMLGenerator
 
 			    } //end if
 
+		    }
+		else
+		    {
+			return $this->_root;;
 		    } //end if
 
 		return $element;
